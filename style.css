@@ -1,0 +1,72 @@
+/* Animated gradient background */
+body{
+  margin:0;
+  font-family: system-ui, Arial, sans-serif;
+  display:flex; flex-direction:column; align-items:center;
+  min-height:100vh;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb,#a6c1ee);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+}
+@keyframes gradientBG{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+h1{ margin:18px 0; color:#222; }
+
+.game-container{
+  position:relative;
+  width: min(92vw, 640px);
+  height: 220px;
+  background:#fff;
+  border:2px solid #222;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+#player{
+  position:absolute; bottom:0; left:28px;
+  width:42px; height:42px; background:#222; border-radius:6px;
+}
+
+#obstacle{
+  position:absolute; bottom:0; right:-40px;
+  width:40px; height:40px; background:crimson; border-radius:6px;
+  animation: moveObstacle 2s linear infinite;
+}
+
+@keyframes moveObstacle{
+  from{ right:-40px; }
+  to{ right:100%; }
+}
+
+/* jump animation for player */
+.jump{ animation: jump 0.5s ease-out; }
+@keyframes jump{
+  0%{ bottom:0 }
+  50%{ bottom:90px }
+  100%{ bottom:0 }
+}
+
+.score{
+  margin:14px 0; font-weight:700; font-size:1.1rem;
+}
+
+/* Fullscreen overlay for game over / win */
+.overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,.6);
+  display:flex; align-items:center; justify-content:center;
+}
+.hidden{ display:none; }
+
+.overlay-content{
+  background:#fff; padding:28px; border-radius:12px; text-align:center;
+  width:min(90vw,380px);
+}
+.overlay-content h2{ margin:0 0 16px; font-size:1.8rem; }
+.overlay-content button{
+  padding:10px 16px; border:none; border-radius:8px; background:#222; color:#fff; cursor:pointer;
+}
+.overlay-content button:hover{ filter:brightness(1.1) }
